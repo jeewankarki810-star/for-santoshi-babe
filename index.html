@@ -163,7 +163,7 @@
     </p>
 
     <div class="btnRow">
-      <button class="btnMain" onclick="reveal()">Tap to open your letter 💌</button>
+      <button class="btnMain" id="toggleBtn" onclick="toggleLetter()">Tap to open your letter 💌</button>
       <button class="btnSoft" onclick="toggleMusic()">Play romantic music 🎵</button>
     </div>
 
@@ -230,11 +230,22 @@
     setInterval(spawnHeart, 650);
 
     // Reveal letter
-    function reveal(){
-      document.getElementById("secretBox").style.display = "block";
-      // gentle “first-open” heart burst
-      for(let i=0;i<12;i++) setTimeout(spawnHeart, i*70);
-    }
+    function toggleLetter(){
+  const box = document.getElementById("secretBox");
+  const btn = document.getElementById("toggleBtn");
+
+  const isOpen = box.style.display === "block";
+
+  if(isOpen){
+    box.style.display = "none";
+    btn.textContent = "Tap to open your letter 💌";
+  } else {
+    box.style.display = "block";
+    btn.textContent = "Close letter ✖️";
+    // cute burst when opening
+    for(let i=0;i<12;i++) setTimeout(spawnHeart, i*70);
+  }
+}
 
     // Open-when messages
     const openWhenMessages = {
