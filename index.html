@@ -11,18 +11,29 @@
       --card: rgba(255,255,255,0.88);
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      background: radial-gradient(circle at top left, #ffe3ea 0%, #ffb3c1 35%, #ff8fab 70%, #ff4d6d 100%);
-      overflow:hidden;
-      color:#1f1f1f;
-    }
+    html, body{
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+   body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background: radial-gradient(circle at top left, #ffe3ea 0%, #ffb3c1 35%, #ff8fab 70%, #ff4d6d 100%);
+  overflow-x:hidden;                 /* ✅ allow vertical scroll */
+  overflow-y:auto;                   /* ✅ allow vertical scroll */
+  -webkit-overflow-scrolling: touch; /* ✅ smooth iPhone scroll */
+  touch-action: pan-y;               /* ✅ allow swipe down/up */
+  color:#1f1f1f;
+}
+
 
     /* floating hearts */
     .heart{
