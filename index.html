@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Santoshi ❤️</title>
+  <style>
+    :root{
+      --pink:#ff4d6d;
+      --deep:#b5173a;
+      --card: rgba(255,255,255,0.88);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background: radial-gradient(circle at top left, #ffe3ea 0%, #ffb3c1 35%, #ff8fab 70%, #ff4d6d 100%);
+      overflow:hidden;
+      color:#1f1f1f;
+    }
+
+    /* floating hearts */
+    .heart{
+      position:fixed;
+      bottom:-30px;
+      font-size:18px;
+      opacity:0.8;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.12));
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      to{ transform: translateY(-110vh) translateX(var(--drift)); opacity:0; }
+    }
+
+    .card{
+      width:min(520px, 100%);
+      background: var(--card);
+      border:1px solid rgba(255,255,255,0.55);
+      border-radius:20px;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+      padding:26px 22px;
+      position:relative;
+      backdrop-filter: blur(8px);
+    }
+    .tag{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      background: rgba(255,77,109,0.12);
+      color: var(--deep);
+      font-weight:600;
+      font-size:13px;
+    }
+    h1{
+      margin:12px 0 10px;
+      font-size:28px;
+      line-height:1.1;
+      letter-spacing: -0.2px;
+    }
+    p{
+      margin:10px 0;
+      font-size:16px;
+      line-height:1.55;
+    }
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    button{
+      border:0;
+      cursor:pointer;
+      border-radius:14px;
+      padding:12px 14px;
+      font-size:15px;
+      font-weight:700;
+      transition: transform .06s ease, box-shadow .2s ease;
+    }
+    .btnMain{
+      background: var(--pink);
+      color:white;
+      box-shadow: 0 12px 26px rgba(255,77,109,0.32);
+    }
+    .btnSoft{
+      background: rgba(255,255,255,0.9);
+      color: var(--deep);
+      border: 1px solid rgba(181,23,58,0.15);
+    }
+    button:active{ transform: scale(0.98); }
+
+    .secret{
+      display:none;
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      background: rgba(255,255,255,0.95);
+      border: 2px dashed rgba(255,77,109,0.55);
+      animation: pop .25s ease;
+    }
+    @keyframes pop{ from{transform:scale(0.98); opacity:0} to{transform:scale(1); opacity:1} }
+
+    .letterTitle{
+      margin:0 0 8px;
+      font-size:18px;
+      color: var(--deep);
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(181,23,58,0.12);
+      margin:14px 0;
+    }
+
+    .openWhenGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .openWhenCard{
+      padding:12px;
+      border-radius:14px;
+      background: rgba(255,77,109,0.08);
+      border: 1px solid rgba(255,77,109,0.18);
+    }
+    .openWhenCard b{ color: var(--deep); }
+    .small{
+      font-size:13px;
+      opacity:0.8;
+      margin-top:10px;
+    }
+
+    .footer{
+      margin-top:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      font-size:12.5px;
+      opacity:0.85;
+    }
+    .name{
+      font-weight:800;
+      color: var(--deep);
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-label="Valentine message">
+    <span class="tag">💘 Valentine Surprise • Long Distance</span>
+    <h1>For <span class="name">Santoshi</span> ❤️</h1>
+    <p>
+      Even if we’re far, my love is always close to you.
+      Tonight, I want you to feel how special you are to me.
+    </p>
+
+    <div class="btnRow">
+      <button class="btnMain" onclick="reveal()">Tap to open your letter 💌</button>
+      <button class="btnSoft" onclick="toggleMusic()">Play romantic music 🎵</button>
+    </div>
+
+    <div class="secret" id="secretBox">
+      <h2 class="letterTitle">My Valentine Letter 💌</h2>
+      <p id="mainMessage">
+        Santoshi,  
+        I may not say it enough, but I truly love you.  
+        Thank you for standing by me when I was at my lowest.  
+        Your love and care have held me together. ❤️
+      </p>
+
+      <div class="divider"></div>
+
+      <p><b>Open when…</b> (tap one)</p>
+      <div class="openWhenGrid">
+        <div class="openWhenCard" onclick="openWhen('miss')">
+          🥺 <b>you miss me</b> <div class="small" id="missText"></div>
+        </div>
+        <div class="openWhenCard" onclick="openWhen('sad')">
+          🌧️ <b>you feel sad</b> <div class="small" id="sadText"></div>
+        </div>
+        <div class="openWhenCard" onclick="openWhen('happy')">
+          ✨ <b>you feel happy</b> <div class="small" id="happyText"></div>
+        </div>
+        <div class="openWhenCard" onclick="openWhen('night')">
+          🌙 <b>it’s late at night</b> <div class="small" id="nightText"></div>
+        </div>
+      </div>
+
+      <p class="small">Made with love — from <span class="name">Jeewan</span></p>
+    </div>
+
+    <div class="footer">
+      <span>💞 Tip: best on phone</span>
+      <span id="musicStatus">Music: off</span>
+    </div>
+
+    <!-- MUSIC (optional): replace the src with your own mp3 file name -->
+    <audio id="bgm" loop>
+      <!-- Put an mp3 in same folder and name it: romantic.mp3 -->
+      <source src="romantic.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    // Romantic floating hearts
+    const heartEmojis = ["💗","💖","💘","❤️","💕","💞"];
+    function spawnHeart(){
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = heartEmojis[Math.floor(Math.random()*heartEmojis.length)];
+      h.style.left = Math.random()*100 + "vw";
+      h.style.animationDuration = (6 + Math.random()*6) + "s";
+      h.style.setProperty("--drift", (Math.random()*120 - 60) + "px");
+      h.style.fontSize = (14 + Math.random()*22) + "px";
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(), 12000);
+    }
+    setInterval(spawnHeart, 650);
+
+    // Reveal letter
+    function reveal(){
+      document.getElementById("secretBox").style.display = "block";
+      // gentle “first-open” heart burst
+      for(let i=0;i<12;i++) setTimeout(spawnHeart, i*70);
+    }
+
+    // Open-when messages
+    const openWhenMessages = {
+      miss: [
+        "Close your eyes for 5 seconds… that’s my hug. I’m with you ❤️",
+        "Distance can’t stop us. I’m yours, always 💗",
+        "One day we’ll laugh about this distance. Until then—my love is constant 💞"
+      ],
+      sad: [
+        "You’re stronger than you think. I’m proud of you ❤️",
+        "Bad moments pass. My love stays 💖",
+        "Take a deep breath. You’re never alone in this 💗"
+      ],
+      happy: [
+        "Your happiness is my favourite thing 🥰",
+        "Keep smiling—your smile is magic ✨❤️",
+        "I’m celebrating your happiness from here 💞"
+      ],
+      night: [
+        "Goodnight, my love. Sleep peacefully—tomorrow is ours too 🌙❤️",
+        "Look at the sky—same moon, same love 💗",
+        "Even in silence, I’m thinking of you 💖"
+      ]
+    };
+
+    function openWhen(type){
+      const list = openWhenMessages[type];
+      const pick = list[Math.floor(Math.random()*list.length)];
+      document.getElementById(type + "Text").textContent = pick;
+    }
+
+    // Music toggle (needs user tap to play on most phones)
+    const bgm = document.getElementById("bgm");
+    const status = document.getElementById("musicStatus");
+    let playing = false;
+
+    async function toggleMusic(){
+      try{
+        if(!playing){
+          await bgm.play();
+          playing = true;
+          status.textContent = "Music: on";
+        }else{
+          bgm.pause();
+          playing = false;
+          status.textContent = "Music: off";
+        }
+      }catch(e){
+        status.textContent = "Music: tap again";
+      }
+    }
+  </script>
+</body>
+</html>
